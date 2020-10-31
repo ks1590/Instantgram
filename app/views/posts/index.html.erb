@@ -1,0 +1,58 @@
+<p><%= notice %></p>
+<% for post in @posts %>
+  <div class="container">
+    <div class="row text">
+
+      <div class= "col-sm-8 col-sm-offset-2">
+        <%# <img src="/avatar.png" height="40px" widht="40px"> %>
+          <div class="post-prof">
+            <%= image_tag post.user.image.url(:thumb100), class: "img-circle" %>
+            <%# # if post.user.image && post.user.image.url %>
+            <%= link_to post_path(post) do %>
+              <%= post.user.name %>
+            <% end %>
+          </div>
+          <div class="post-img">
+            <% if post.image && post.image.url %>
+              <%= image_tag post.image.url ,class: "img-responsive" %>
+            <% end %>
+          </div>
+
+          <div class = "post-icon">
+            <% if post.user.id != current_user.id %>
+              <% if current_user.already_favorited?(post) %>
+                <%= link_to post_favorites_path(post), method: :delete do %>
+                  <i class="fas fa-heart"></i>              
+                <% end %>
+                <%= post.favorites.count %>
+              <% else %>
+                <%= link_to post_favorites_path(post), method: :post do %>
+                  <i class="far fa-heart"></i>
+                <% end %>
+                <%= post.favorites.count %>
+              <% end %>        
+            <% end %>
+          
+            <% if post.user.id == current_user.id %>
+              <div class="post-links">                    
+                <%= link_to edit_post_path(post.id) do %>
+                    <span class="glyphicon glyphicon-pencil g-links" aria-hidden="true"></span>                
+                <% end %>
+                <%= link_to post_path(post.id), method: :delete ,data: { confirm: '本当に削除してよろしいですか？' } do %>
+                    <span class="glyphicon glyphicon-trash g-links" aria-hidden="true"></span> 
+                <% end %>
+              </div>
+            <% end %>
+          <div>
+
+            <div class="post-text">
+              <p><%= post.title %></p>
+              <p><%= post.content %></p>
+              <%= post.created_at.strftime("投稿日：%Y年%m月%d日") %>
+            </div>
+          </div>                        
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>
