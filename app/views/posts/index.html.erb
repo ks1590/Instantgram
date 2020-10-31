@@ -6,7 +6,7 @@
       <div class= "col-sm-8 col-sm-offset-2">
         <%# <img src="/avatar.png" height="40px" widht="40px"> %>
           <div class="post-prof">
-            <%= image_tag post.user.image.url(:thumb100), class: "img-circle" %>
+            <%# <%= image_tag post.user.image.url(:thumb100), class: "img-circle" %> %>
             <%# # if post.user.image && post.user.image.url %>
             <%= link_to post_path(post) do %>
               <%= post.user.name %>
@@ -46,7 +46,6 @@
           <div>
 
             <div class="post-text">
-              <p><%= post.title %></p>
               <p><%= post.content %></p>
               <%= post.created_at.strftime("投稿日：%Y年%m月%d日") %>
             </div>
