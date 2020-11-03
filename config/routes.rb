@@ -1,10 +1,14 @@
 Rails.application.routes.draw do
-  root "users#new"
-  resources :posts do
+	root "users#new"
+	resources :favorites
+	resources :posts do
+    resource :favorites, only: [:create, :destroy]
 		collection do   
 			post :confirm
 		end
 	end
 	resources :sessions, only: [:new, :create, :edit, :destroy]
-	resources :users
+	resources :users do 
+		resources :favorites
+	end
 end

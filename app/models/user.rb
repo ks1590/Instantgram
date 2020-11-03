@@ -7,6 +7,11 @@ class User < ApplicationRecord
 	validates :password, presence: true, length: { minimum: 6 }
 
 	has_many :posts, dependent: :destroy
+	has_many :favorites, dependent: :destroy
 	
-	mount_uploader :image, ImageUploader
+	mount_uploader :image, ImageUploader	
+	
+	def already_favorited?(post)
+    self.favorites.exists?(post_id: post.id)
+  end
 end

@@ -4,10 +4,11 @@
     <div class="row text">
 
       <div class= "col-sm-8 col-sm-offset-2">
-        <%# <img src="/avatar.png" height="40px" widht="40px"> %>
+        <img src="/avatar.png" height="40px" widht="40px">
           <div class="post-prof">
-            <%# <%= image_tag post.user.image.url(:thumb100), class: "img-circle" %> %>
-            <%# # if post.user.image && post.user.image.url %>
+              <% if post.user.image && post.user.image.url %>
+                <%= image_tag post.user.image.url(:thumb100), class: "img-circle" %>
+              <% end %>
             <%= link_to post_path(post) do %>
               <%= post.user.name %>
             <% end %>
@@ -20,7 +21,17 @@
 
           <div class = "post-icon">
             <% if post.user.id != current_user.id %>
-   
+              <% if current_user.already_favorited?(post) %>
+                <%= link_to post_favorites_path(post), method: :delete do %>
+                  <i class="fas fa-heart"></i>              
+                <% end %>
+                <%= post.favorites.count %>
+              <% else %>
+                <%= link_to post_favorites_path(post), method: :post do %>
+                  <i class="far fa-heart"></i>
+                <% end %>
+                <%= post.favorites.count %>
+              <% end %>        
             <% end %>
           
             <% if post.user.id == current_user.id %>
