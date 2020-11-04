@@ -36,7 +36,7 @@ class PostsController < ApplicationController
   def show
     @post = Post.find(params[:id])
     @post = current_user.posts.build(post_params)
-    # @favorite = current_user.favorites.find_by(post_id: @post.id)
+    @favorite = current_user.favorites.find_by(post_id: @post.id)
   end
 
   def update

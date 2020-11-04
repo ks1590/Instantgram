@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 	root "users#new"
-	resources :favorites
+	resources :favorites, only: [:create, :destroy]
 	resources :posts do
     resource :favorites, only: [:create, :destroy]
 		collection do   
