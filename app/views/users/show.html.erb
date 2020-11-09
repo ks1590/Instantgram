@@ -1,24 +1,24 @@
 <% if @user.image && @user.image.url %>
-    <%= image_tag @user.image.url %>
+    <%= image_tag @user.image.url(:thumb100) %>
 <% else %>
     <%= image_tag '/avatar.png' %>
 <% end %>
 
 <p>
-  <strong>Name:</strong>
+  <strong>ユーザー名:</strong>
   <%= @user.name %>
 </p>
 
 <p>
-  <strong>Email:</strong>
+  <strong>メールアドレス:</strong>
   <%= @user.email %>
 </p>
-<div>
-  <%# <%= link_to 'favorites', [@user, :favorites]  %> %>
+<div class="text-left">
+    <%= link_to 'いいねした写真', [@user, :favorites], class:"btn btn-success"  %>
+    <% if logged_in? %>
+          <%= link_to 'プロフィールを編集', edit_user_path(@user), class:"btn btn-info" %>
+  <% end %>
 </div>
-<% if logged_in? %>
-  <div>
-    <%= link_to 'Edit', edit_user_path(@user) %>
-  </div>
-<% end %>
-<%= link_to 'Back', users_path %>
+<div class="text-right">
+  <%= link_to '一覧画面に戻る', users_path, class:"btn btn-default" %>
+</div>
