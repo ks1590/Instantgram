@@ -40,7 +40,7 @@ class PostsController < ApplicationController
   end
 
   def update
-    @post = current_user.posts.update(post_params)
+    @post = current_user.posts.build(post_params)
     if @post.update(post_params)
       redirect_to posts_path
     else
