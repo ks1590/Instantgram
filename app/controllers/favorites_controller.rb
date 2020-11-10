@@ -1,8 +1,4 @@
 class FavoritesController < ApplicationController
-  def show
-    @favorites = current_user.favorites
-  end
-
   def index
     @posts = Post.joins(:favorites).where(favorites:{user_id: params[:user_id]})
   end 

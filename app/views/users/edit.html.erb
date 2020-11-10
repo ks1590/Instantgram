@@ -35,6 +35,7 @@
       <%= form.label :password_confirmation %>
       <%= form.password_field :password_confirmation, class:"form-control" %>
     </div>
-    <%= form.submit("更新する", class:"btn btn-info btn-block")%>
+    <%= form.submit("更新する", class:"btn btn-info btn-block") %>
+    <%= link_to "戻る", :back, class:"btn btn-default btn-block" %>
   </div>
 <% end %>

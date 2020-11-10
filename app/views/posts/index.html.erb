@@ -2,17 +2,14 @@
 <% for post in @posts %>
   <div class="container">
     <div class="row text">
-
       <div class= "col-sm-8 col-sm-offset-2">
           <div class="post-prof">
-              <% if post.user.image && post.user.image.url %>
-                <%= image_tag post.user.image.url(:thumb100), class: "img-circle" %>
-              <% else %>
-                <img src="/avatar.png">
-              <% end %>
-            <%= link_to post_path(post) do %>
-              <%= post.user.name %>
+            <% if post.user.image && post.user.image.url %>
+              <%= image_tag post.user.image.url(:thumb100), class: "img-circle" %>
+            <% else %>
+              <img src="/avatar.png">
             <% end %>
+            <%= link_to post.user.name, [post.user] %>
           </div>
           <div class="post-img">
             <% if post.image && post.image.url %>

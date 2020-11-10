@@ -1,7 +1,7 @@
 <% if @user.image && @user.image.url %>
-    <%= image_tag @user.image.url(:thumb100) %>
+    <%= image_tag @user.image.url(:thumb100), class: "img-circle"  %>
 <% else %>
-    <%= image_tag '/avatar.png' %>
+    <%= image_tag '/avatar.png', class: "img-circle"  %>
 <% end %>
 
 <p>
@@ -9,15 +9,17 @@
   <%= @user.name %>
 </p>
 
-<p>
-  <strong>メールアドレス:</strong>
-  <%= @user.email %>
-</p>
+<% if @user.id == current_user.id %>
+  <p>
+    <strong>メールアドレス:</strong>
+    <%= @user.email %>
+  </p>
+<% end %>
 <div class="text-left">
     <%= link_to 'いいねした写真', [@user, :favorites], class:"btn btn-success"  %>
-    <% if logged_in? %>
-          <%= link_to 'プロフィールを編集', edit_user_path(@user), class:"btn btn-info" %>
-  <% end %>
+    <% if @user.id == current_user.id %>
+      <%= link_to 'プロフィールを編集', edit_user_path(@user), class:"btn btn-info" %>
+    <% end %>
 </div>
 <div class="text-right">
   <%= link_to '一覧画面に戻る', posts_path, class:"btn btn-default" %>
