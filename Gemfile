@@ -25,8 +25,15 @@ gem 'faker'
 
 gem 'bootsnap', '>= 1.1.0', require: false
 
+gem 'unicorn'
+gem 'mini_racer', platforms: :ruby
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+  gem 'capistrano', '3.6.0'
+  gem 'capistrano-bundler'
+  gem 'capistrano-rails'
+  gem 'capistrano-rbenv'
+  gem 'capistrano3-unicorn'
 end
 
 group :development do
@@ -35,6 +42,8 @@ group :development do
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
   gem 'letter_opener_web'
+  gem 'ed25519'
+  gem 'bcrypt_pbkdf'
 end
 
 group :test do
