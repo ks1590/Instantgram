@@ -1,4 +1,4 @@
-50.times do |n|
+10.times do |n|
   name = Faker::Name.name
   email = Faker::Internet.email
   password = "passwosrd"
