@@ -6,6 +6,7 @@ ruby '2.6.5'
 gem 'fog-aws'
 gem 'dotenv-rails'
 
+gem "toastr-rails"
 gem 'bootstrap-sass', '~> 3.4.1'
 gem 'sassc-rails', '>= 2.1.0'
 gem 'jquery-rails'
